@@ -1,0 +1,51 @@
+{
+  /**
+   * Application configuration section
+   * http://pm2.keymetrics.io/docs/usage/application-declaration/
+   */
+  "apps": [
+
+    // First application
+    {
+      "name": "App1",
+      "script": "app1/index.js",
+      "env": {
+        "PORT": 8000
+      }
+    },
+
+    // Second application
+    {
+      "name": "App2",
+      "script": "app2/index.js",
+      "env": {
+        "PORT": 8080
+      }
+    }
+  ],
+
+  /**
+   * Deployment section
+   * http://pm2.keymetrics.io/docs/usage/deployment/
+   */
+  "deploy": {
+    "production": {
+      "user": "ubuntu",
+      "host": "52.91.112.204",
+      "key": "/Users/akupila/.ssh/AWS.pem",
+      "ref"  : "origin/develop",
+      "repo" : "git@github.com:Autoplay-co/autoplay-web.git",
+      "path": "/var/www/app1",
+      "post-deploy": "npm install --production ; pm2 startOrRestart ecosystem.json --env production"
+    },
+    "dev": {
+      "user": "ubuntu",
+      "host": "52.91.112.204",
+      "path": "/var/www/app2",
+      "post-deploy": "npm install ; pm2 startOrRestart ecosystem.json --env dev",
+      "env": {
+        "NODE_ENV": "dev"
+      }
+    }
+  }
+}
