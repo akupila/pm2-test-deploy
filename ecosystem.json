@@ -36,7 +36,7 @@
       "ref"  : "origin/master",
       "repo" : "git@github.com:akupila/pm2-test-deploy.git",
       "path": "/var/www/test",
-      "post-deploy": "npm install --production ; pm2 startOrRestart ecosystem.json --env production"
+      "post-deploy": "cd app1 && npm install --production ; cd ../app2 && npm install --production ; pm2 startOrRestart ecosystem.json --env production"
     },
     "dev": {
       "user": "ubuntu",
