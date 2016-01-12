@@ -33,9 +33,9 @@
       "user": "ubuntu",
       "host": "52.91.112.204",
       "key": "/Users/akupila/.ssh/AWS.pem",
-      "ref"  : "origin/develop",
-      "repo" : "git@github.com:Autoplay-co/autoplay-web.git",
-      "path": "/var/www/app1",
+      "ref"  : "origin/master",
+      "repo" : "git@github.com:akupila/pm2-test-deploy.git",
+      "path": "/var/www/test",
       "post-deploy": "npm install --production ; pm2 startOrRestart ecosystem.json --env production"
     },
     "dev": {
